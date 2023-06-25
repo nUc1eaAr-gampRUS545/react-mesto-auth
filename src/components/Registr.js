@@ -22,7 +22,7 @@ export default function Registr({registr,handleEditInfoTootipClick,handleErrorMa
             //navigate('/sign-in');
             })
         .catch((err)=>{
-            handleEditInfoTootipClick();
+            
             handleErrorMassege();
             console.error(err);})
 

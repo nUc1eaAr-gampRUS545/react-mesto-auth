@@ -16,7 +16,7 @@ export default function Login({authorization,handleLogged,handleEditInfoTootipCl
         evt.preventDefault();
         authorization(formValue).then((data)=>{
             handleLogged();
-            navigate('/kal')
+            navigate('/mesto-auth')
             console.log(data)}).catch((err)=>{
                 handleEditInfoTootipClick();
                 console.error(err)});

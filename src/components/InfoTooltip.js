@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-export default function InfoTooltip({ isOpen, onClose, errorMassege }) {
+export default function InfoTooltip({ isOpen, onClose}) {
   const location = useLocation();
   return (
     <div className={isOpen ? `popup  popup_opened` : `popup`}>
