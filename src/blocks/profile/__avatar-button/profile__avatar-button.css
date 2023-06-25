@@ -1,0 +1,19 @@
+.profile__avatar-button{
+    opacity: 1;
+    border:0;
+    background: url(../../../images/profile/Vector.svg) center center no-repeat;
+    
+    z-index: 2;
+    padding: 0;
+    max-width: 120px;
+    height: 120px;
+  
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 0px 0 0;
+  object-fit: cover;
+}
+.popup_type_profile-change{
+    display: none;
+}

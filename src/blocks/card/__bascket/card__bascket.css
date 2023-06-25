@@ -1,0 +1,13 @@
+.card__bascket {
+  position: absolute;
+  width: 18px;
+  display:none;
+  height: 19px;
+  background-image: url(../../../images/card/Trash.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 0;
+  right: 20px;
+  top: 20px;
+}

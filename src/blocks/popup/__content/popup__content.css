@@ -1,0 +1,6 @@
+.popup__content {
+    display:flex;
+    position: relative;
+    flex-direction: column;
+    border-radius: 10px;
+  }

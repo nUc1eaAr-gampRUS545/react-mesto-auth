@@ -1,0 +1,22 @@
+.profile__button {
+  display: block;
+  min-width: 150px;
+  height: 50px;
+  background-color: #000000;
+  border: 2px solid #fff;
+  margin-left: auto;
+  margin-top: 37px;
+  transition: opacity 0.2s ease-in-out;
+  border-radius: 2px;
+}
+.profile__button:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 881px) {
+  .profile__button {
+    margin: 0 auto;
+    width: 282px;
+    margin-bottom: 36px;
+    cursor: pointer;
+  }
+}

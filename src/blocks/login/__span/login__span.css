@@ -1,0 +1,13 @@
+.login__span{
+    width: 358px;
+margin:15px 0;
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+text-align: center;
+
+color: #FFFFFF;
+}

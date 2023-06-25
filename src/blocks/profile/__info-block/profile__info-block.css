@@ -1,0 +1,7 @@
+.profile__info-block {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width:100%;
+  }
