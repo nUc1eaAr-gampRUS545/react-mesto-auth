@@ -25,9 +25,10 @@ export default function Login({authorization,handleLogged,handleEditInfoTootipCl
     return(
         <div className="login">
             <h2 className="login__title">Вход</h2>
+            <form onSubmit={handleSubmit} className="popup__content">
             <input className="login__input" placeholder="Email"  name="email" type="email"  value={formValue.email} onChange={handleChange}></input>
             <input className="login__input" placeholder="Пароль" name="password" type="password" value={formValue.password} onChange={handleChange}></input>
-            <button type="submit" className="login__submit" onClick={handleSubmit}>Войти</button>
+            <button type="submit" className="login__submit" >Войти</button></form>
         </div>
     )
 }

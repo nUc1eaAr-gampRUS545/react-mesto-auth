@@ -13,10 +13,10 @@ import DeleteCardPopup from "./DeleteCardPopup.js";
 import Registr from "./Registr.js";
 import Login from "./Login.js";
 import { ProtectedRoute } from "./ProtectedRoute.js";
-import { registr, authorization, getContent } from "./UserAuth.js";
+import { registr, authorization, getContent } from "../utils/UserAuth.js";
 import { NavLink } from "react-router-dom";
 import InfoTooltip from "./InfoTooltip.js";
-import union from "../images/popup/Union.svg";
+
 function App() {
  
   const navigate = useNavigate();
@@ -191,7 +191,7 @@ function App() {
             <>
               <Header
                 element={
-                  <NavLink className="header__link" flag={true} to="/sign-in">
+                  <NavLink className="header__link"to="/sign-in">
                     Войти
                   </NavLink>
                 }
@@ -238,8 +238,6 @@ function App() {
                 <>
                   <CurrentUserContext.Provider value={currentUser}>
                     <Header
-                      flag={false}
-                      userData={isUserData}
                       element={
                         <NavLink
                           className="header__link"
@@ -248,7 +246,7 @@ function App() {
                         >
                           Выйти
                         </NavLink>
-                      }
+                      }  flag={false} userData={isUserData}
                     />
                     <Main
                       onEditProfile={handleEditProfileClick}

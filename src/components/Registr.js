@@ -31,9 +31,10 @@ export default function Registr({registr,handleEditInfoTootipClick,handleErrorMa
     return(
         <div className="login">
             <h2 className="login__title">Регистрация</h2>
+            <form onSubmit={handleSubmit} className="popup__content">
             <input className="login__input" placeholder="Email"  name="email" type="email" value={formValue.email} onChange={handleChange}></input>
             <input className="login__input" placeholder="Пароль" name="password" type="password" value={formValue.password} onChange={handleChange}></input>
-            <button type="submit" className="login__submit"  onClick={handleSubmit}>Зарегистрироваться</button>
+            <button type="submit" className="login__submit"  >Зарегистрироваться</button></form>
             <p className="login__span">Уже зарегестрированы? <NavLink className="login__link"   to='/sign-in'>Войти</NavLink></p>
         </div>
     )
