@@ -183,7 +183,13 @@ function App() {
   return (
     <div className="page">
       <Routes>
-        <Route path="/" element={<Header />} />
+        <Route path="/" element={<Header element={
+                  <NavLink className="header__link"to="/sign-in">
+                    Войти
+                  </NavLink>
+                }
+                flag={true}
+                userData={isUserData} />} />
 
         <Route
           path="sign-up"
