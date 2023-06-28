@@ -15,6 +15,7 @@
 @import url(../src/blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../src/blocks/elements/elements.css);
 @import url(../src/blocks/card/card.css);
+
 @import url(../src/blocks/card/__bascket/card__bascket.css);
 @import url(../src/blocks/card/__photography/card__photography.css);
 @import url(../src/blocks/card/__title/card__title.css);

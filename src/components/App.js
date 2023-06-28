@@ -18,10 +18,12 @@ import { NavLink } from "react-router-dom";
 import InfoTooltip from "./InfoTooltip.js";
 
 function App() {
- 
   const navigate = useNavigate();
   function handleErrorMassege() {
     setErrorMassege(true);
+  }
+  function handleOKMassege() {
+    setErrorMassege(false);
   }
   function signOut() {
     localStorage.removeItem("jwt");
@@ -34,14 +36,12 @@ function App() {
         if (!data) {
           return;
         }
-
-        navigate("/mesto-auth");
+        navigate("/");
         setLoggedIn(true);
         setUserData(data);
       })
       .catch((data) => {
         console.error(data);
-
         setLoggedIn(false);
       });
   };
@@ -53,8 +53,9 @@ function App() {
   const handleLogged = () => {
     setLoggedIn(true);
   };
-  const [errorMassege, setErrorMassege] = React.useState(false);
+  const [errorMassege, setErrorMassege] = React.useState(null);
   const [isUserData, setUserData] = React.useState({});
+  let object = isUserData;
   const [cards, setCards] = React.useState([]);
   const [isLoggetIn, setLoggedIn] = React.useState(null);
   function handleCardLike(card) {
@@ -80,6 +81,7 @@ function App() {
         console.error(err);
       });
   };
+
   React.useEffect(() => {
     api
       .getInitialCards()
@@ -180,24 +182,17 @@ function App() {
         console.error(err);
       });
   }
+
   return (
     <div className="page">
       <Routes>
-        <Route path="/" element={<Header element={
-                  <NavLink className="header__link"to="/sign-in">
-                    Войти
-                  </NavLink>
-                }
-                flag={true}
-                userData={isUserData} />} />
-
         <Route
           path="sign-up"
           element={
             <>
               <Header
                 element={
-                  <NavLink className="header__link"to="/sign-in">
+                  <NavLink className="header__link" to="/sign-in">
                     Войти
                   </NavLink>
                 }
@@ -208,6 +203,7 @@ function App() {
                 registr={registr}
                 handleEditInfoTootipClick={handleEditInfoTootipClick}
                 handleErrorMassege={handleErrorMassege}
+                handleOKMassege={handleOKMassege}
               />
             </>
           }
@@ -230,13 +226,13 @@ function App() {
                 authorization={authorization}
                 handleLogged={handleLogged}
                 handleEditInfoTootipClick={handleEditInfoTootipClick}
-                isLoggetIn={isLoggetIn}
+                handleErrorMassege={handleErrorMassege}
               />
             </>
           }
         />
         <Route
-          path="mesto-auth"
+          path="/"
           element={
             <ProtectedRoute
               isLoggedIn={isLoggetIn}
@@ -252,7 +248,9 @@ function App() {
                         >
                           Выйти
                         </NavLink>
-                      }  flag={false} userData={isUserData}
+                      }
+                      flag={false}
+                      userData={object.data}
                     />
                     <Main
                       onEditProfile={handleEditProfileClick}

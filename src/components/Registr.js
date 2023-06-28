@@ -2,7 +2,7 @@ import React  from "react";
 
 import { NavLink,useNavigate } from 'react-router-dom';
 
-export default function Registr({registr,handleEditInfoTootipClick,handleErrorMassege}){
+export default function Registr({registr,handleEditInfoTootipClick,handleErrorMassege,handleOKMassege}){
     const navigate=useNavigate()
     const [formValue,setFormValue]=React.useState({
         email:'',
@@ -19,10 +19,10 @@ export default function Registr({registr,handleEditInfoTootipClick,handleErrorMa
         registr(formValue)
         .then((data)=>{
             handleEditInfoTootipClick();
-            //navigate('/sign-in');
+            handleOKMassege();
             })
         .catch((err)=>{
-            
+            handleEditInfoTootipClick();
             handleErrorMassege();
             console.error(err);})
 

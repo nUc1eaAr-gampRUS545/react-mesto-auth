@@ -1,6 +1,6 @@
 import React  from "react";
 import {useNavigate} from 'react-router-dom';
-export default function Login({authorization,handleLogged,handleEditInfoTootipClick,isLoggetIn}){
+export default function Login({authorization,handleLogged,handleEditInfoTootipClick,handleErrorMassege}){
     const navigate=useNavigate()
     const [formValue,setFormValue]=React.useState({
         email:'',
@@ -16,9 +16,10 @@ export default function Login({authorization,handleLogged,handleEditInfoTootipCl
         evt.preventDefault();
         authorization(formValue).then((data)=>{
             handleLogged();
-            navigate('/mesto-auth')
+            navigate('/')
             console.log(data)}).catch((err)=>{
                 handleEditInfoTootipClick();
+                handleErrorMassege();
                 console.error(err)});
        
     }
