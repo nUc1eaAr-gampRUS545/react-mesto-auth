@@ -17,6 +17,7 @@ return(
 
 }
 export const authorization=(data)=>{
+    
     return(
         fetch(`${baseURL}/signin`,{
             method:"POST",
@@ -26,7 +27,6 @@ export const authorization=(data)=>{
                 if (data.token) {
                   const token = data.token;
                   localStorage.setItem('jwt', token);
-          
                   return token;
                 };
               }))

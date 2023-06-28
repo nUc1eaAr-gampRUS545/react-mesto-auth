@@ -1,6 +1,6 @@
 import React  from "react";
 import {useNavigate} from 'react-router-dom';
-export default function Login({authorization,handleLogged,handleEditInfoTootipClick,handleErrorMassege}){
+export default function Login({authorization,handleLogged,handleEditInfoTootipClick,handleErrorMassege,getUserData}){
     const navigate=useNavigate()
     const [formValue,setFormValue]=React.useState({
         email:'',

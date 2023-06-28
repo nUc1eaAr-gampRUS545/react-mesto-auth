@@ -25,20 +25,25 @@ function App() {
   function handleOKMassege() {
     setErrorMassege(false);
   }
+  function getUserData(data){
+    setUserData(data)
+
+  }
   function signOut() {
     localStorage.removeItem("jwt");
   }
   const checkToken = () => {
     const jwt = localStorage.getItem("jwt");
-
+    
     getContent(jwt)
       .then((data) => {
+        getUserData(data.data)
         if (!data) {
           return;
         }
         navigate("/");
         setLoggedIn(true);
-        setUserData(data);
+        //setUserData(data);
       })
       .catch((data) => {
         console.error(data);
@@ -55,7 +60,7 @@ function App() {
   };
   const [errorMassege, setErrorMassege] = React.useState(null);
   const [isUserData, setUserData] = React.useState({});
-  let object = isUserData;
+
   const [cards, setCards] = React.useState([]);
   const [isLoggetIn, setLoggedIn] = React.useState(null);
   function handleCardLike(card) {
@@ -227,6 +232,7 @@ function App() {
                 handleLogged={handleLogged}
                 handleEditInfoTootipClick={handleEditInfoTootipClick}
                 handleErrorMassege={handleErrorMassege}
+                getUserData={getUserData}
               />
             </>
           }
@@ -250,7 +256,7 @@ function App() {
                         </NavLink>
                       }
                       flag={false}
-                      userData={object.data}
+                      userData={isUserData}
                     />
                     <Main
                       onEditProfile={handleEditProfileClick}
