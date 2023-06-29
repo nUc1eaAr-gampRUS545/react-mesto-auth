@@ -1,7 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm.js";
 
-export default function AddPlacePopup({ onClose, isOpen, onAddPlaceSubmit }) {
+export default function AddPlacePopup({ onClose, isOpen, onAddPlaceSubmit,isLoading }) {
   const [name,setName] = React.useState('');
   const [link,setLink] = React.useState('');
   function handleSubmit(evt) {
@@ -22,7 +22,7 @@ export default function AddPlacePopup({ onClose, isOpen, onAddPlaceSubmit }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      submitText="Сохранить"
+      isLoading={isLoading}
     >
       <label className="popup__form">
         <input

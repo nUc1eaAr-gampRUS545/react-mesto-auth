@@ -1,6 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm.js";
-export default function DeleteCardPopup({isOpen,onClose,onSubmit,onDeleteCard}){
+export default function DeleteCardPopup({isOpen,onClose,onSubmit,onDeleteCard,isLoading}){
+    
     function hundleSubmit(evt){
         evt.preventDefault();
         onDeleteCard()
@@ -13,8 +14,9 @@ export default function DeleteCardPopup({isOpen,onClose,onSubmit,onDeleteCard}){
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={hundleSubmit}
-      >
+        isLoading={isLoading}
+      />
         
-      </PopupWithForm>)
+  )
     
 }

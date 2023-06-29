@@ -1,8 +1,8 @@
 import React from "react";
-import { CurrentUserContext } from "../context/CurrentUserContext.js";
+
 import PopupWithForm from "./PopupWithForm.js";
 export default function EditAvatarPopup({isOpen,
-    onClose,onUpdateAvatar}){
+    onClose,onUpdateAvatar,isLoading}){
 
       const avatarRef=React.useRef();
      
@@ -19,7 +19,7 @@ export default function EditAvatarPopup({isOpen,
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      submitText='Сохранить'
+      isLoading={isLoading}
     >
       <label className="popup__form">
         <input

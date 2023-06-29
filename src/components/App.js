@@ -19,16 +19,17 @@ import InfoTooltip from "./InfoTooltip.js";
 
 function App() {
   const navigate = useNavigate();
+  function handleUserDataChange(data){
+    setUserData(data)
+  }
+ 
   function handleErrorMassege() {
     setErrorMassege(true);
   }
   function handleOKMassege() {
     setErrorMassege(false);
   }
-  function getUserData(data){
-    setUserData(data)
-
-  }
+  
   function signOut() {
     localStorage.removeItem("jwt");
   }
@@ -37,15 +38,15 @@ function App() {
     
     getContent(jwt)
       .then((data) => {
-        getUserData(data.data)
         if (!data) {
           return;
         }
         navigate("/");
         setLoggedIn(true);
-        //setUserData(data);
+        handleUserDataChange(data.data)
       })
       .catch((data) => {
+        handleUserDataChange('')
         console.error(data);
         setLoggedIn(false);
       });
@@ -126,6 +127,8 @@ function App() {
   const handleEditInfoTootipClick = () => {
     setIsEditInfoTooltipPopupOpen(true);
   };
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const closeAllPopups = () => {
     setSelectedCard(null);
     setIsEditProfilePopupOpen(false);
@@ -144,6 +147,7 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   };
   function handleUpdateUser(i) {
+    setIsLoading(true);
     api
       .replaceInfo(i)
       .then((data) => {
@@ -152,9 +156,10 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
-      });
+      }).finally(()=>{setIsLoading(false)})
   }
   function handleUpdateAvatar(i) {
+    setIsLoading(true);
     api
       .changeProfile(i)
       .then((data) => {
@@ -163,9 +168,10 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
-      });
+      }).finally(()=>{setIsLoading(false)})
   }
   function handleAddPlaceSubmit(newCard) {
+    setIsLoading(true)
     api
       .addMyCards(newCard)
       .then((data) => {
@@ -174,7 +180,7 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
-      });
+      }).finally(()=>{setIsLoading(false)})
   }
   function handleDeleteCard(data) {
     api
@@ -232,7 +238,9 @@ function App() {
                 handleLogged={handleLogged}
                 handleEditInfoTootipClick={handleEditInfoTootipClick}
                 handleErrorMassege={handleErrorMassege}
-                getUserData={getUserData}
+                handleUserDataChange={handleUserDataChange}
+               
+
               />
             </>
           }
@@ -243,7 +251,7 @@ function App() {
             <ProtectedRoute
               isLoggedIn={isLoggetIn}
               element={
-                <>
+                
                   <CurrentUserContext.Provider value={currentUser}>
                     <Header
                       element={
@@ -274,24 +282,28 @@ function App() {
                       isOpen={isEditProfilePopupOpen}
                       onClose={closeAllPopups}
                       onUpdateUser={handleUpdateUser}
+                      isLoading={isLoading}
                     />
                     <AddPlacePopup
                       isOpen={isAddPlacePopupOpen}
                       onClose={closeAllPopups}
                       onAddPlaceSubmit={handleAddPlaceSubmit}
+                      isLoading={isLoading}
                     />
                     <EditAvatarPopup
                       isOpen={isEditAvatarPopupOpen}
                       onClose={closeAllPopups}
                       onUpdateAvatar={handleUpdateAvatar}
+                      isLoading={isLoading}
                     />
                     <DeleteCardPopup
                       isOpen={isEditDeleteCardPopupOpen}
                       onClose={closeAllPopups}
                       onDeleteCard={handleDeleteCard}
+                      isLoading={isLoading}
                     />
                   </CurrentUserContext.Provider>
-                </>
+                
               }
             />
           }
@@ -301,7 +313,7 @@ function App() {
         isOpen={isEditInfoTooltipPopupOpen}
         onClose={closeAllPopups}
         errorMassege={errorMassege}
-      ></InfoTooltip>
+      />
     </div>
   );
 }

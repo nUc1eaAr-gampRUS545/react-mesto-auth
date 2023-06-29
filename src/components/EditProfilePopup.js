@@ -1,7 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm.js";
 import { CurrentUserContext } from "../context/CurrentUserContext.js";
-export default function EditProfilePopup({isOpen,onClose,onUpdateUser}){
+export default function EditProfilePopup({isOpen,onClose,onUpdateUser,isLoading}){
     const currentUser = React.useContext(CurrentUserContext);
     const [name,setName]=React.useState('');
     const [description,setDescription]=React.useState('');
@@ -24,7 +24,7 @@ export default function EditProfilePopup({isOpen,onClose,onUpdateUser}){
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={handleSubmit} 
-        submitText='Сохранить' 
+        isLoading={isLoading} 
       >
         <label className="popup__form">
           <input
@@ -34,7 +34,7 @@ export default function EditProfilePopup({isOpen,onClose,onUpdateUser}){
             maxLength="40"
             id="name"
             name="name"
-            value={name}
+            value={name || ''}
             type="text"
             placeholder="Имя"
             onChange={(e)=>{setName(e.target.value)}}
@@ -48,7 +48,7 @@ export default function EditProfilePopup({isOpen,onClose,onUpdateUser}){
             required
             maxLength="200"
             id="job"
-            value={description}
+            value={description || ''}
             name="job"
             type="text"
             placeholder="Работа"
