@@ -108,7 +108,7 @@ function App() {
       .catch((err) => {
         console.error(err);
       });
-  }, {});
+  }, []);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isEditInfoTooltipPopupOpen, setIsEditInfoTooltipPopupOpen] =
